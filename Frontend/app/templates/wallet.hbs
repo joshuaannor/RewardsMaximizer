@@ -1,0 +1,301 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Digital Wallet - Rewards Maximizer</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <style>
+      html, body { height: 100%; margin: 0; display: flex; flex-direction:
+      column; background-color: #f5f7fa; } .header { background-color: #343a40;
+      color: white; } .header-logo { font-size: 2rem; color: white; } .card-icon
+      { margin-left: 10px; color: white; } .container { flex-grow: 1; }
+      .generic-card-icon { font-size: 3em; color: white; display: flex;
+      justify-content: center; align-items: center; height: 100px; width: 100px;
+      border-radius: 50%; margin: 20px auto; } .wallet-card { border: 10px solid
+      transparent; border-radius: 15px; overflow: hidden; background: #ffffff;
+      text-align: center; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); transition:
+      transform 0.3s, box-shadow 0.3s; } .wallet-card:hover { transform:
+      translateY(-5px); box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); border-color:
+      rgba(0, 0, 0, 0.2);} footer { background-color: #343a40; color: white;
+      padding: 1rem 0; text-align: center; } .footer-logo { font-size: 1.5rem;
+      display: flex; align-items: center; justify-content: center; }
+      .footer-links a { color: white; margin: 0 10px; text-decoration: none;
+      font-weight: bold; } .footer-links a:hover { text-decoration: underline; }
+      /* Button Styling */ .button { border: none; outline: none;
+      background-color: #212529; padding: 1rem 90px 1rem 2rem; position:
+      relative; width: 100%; max-width: 400px; margin: 0 auto; display: block;
+      border-radius: 20px; letter-spacing: 0.7px; color: #fff; font-size: 21px;
+      font-family: "Playfair Display", serif; cursor: pointer; box-shadow:
+      rgba(0, 9, 61, 0.2) 0px 4px 8px 0px; overflow: hidden; } .button:hover {
+      transform: translateY(-2px); transition: transform 0.2s ease-in-out; }
+      .button:active { transform: translateY(1px); } .button__svg { position:
+      absolute; overflow: visible; bottom: 6px; right: 0.2rem; height: 140%; }
+      .button__text span { display: inline-block; transition: transform 0.2s
+      ease-in-out; } .button:hover .button__text span { transform:
+      translateY(-0.25rem); } @media (hover: hover) { #creditcard { transform:
+      translateY(110px); transition: transform 0.1s ease-in-out; } #money {
+      transform: translateY(180px); transition: transform 0.1s ease-in-out; }
+      .button:hover #creditcard { transform: translateY(0px); transition:
+      transform 0.2s ease-in-out; } .button:hover #money { transform:
+      translateY(0px); transition: transform 0.3s ease-in-out; } }
+    </style>
+  </head>
+
+  <body class="bg-light d-flex flex-column min-vh-100">
+    {{! Header }}
+    <header class="header bg-dark text-white py-3">
+      <div class="container d-flex justify-content-between align-items-center">
+        <h1 class="header-logo">Rewards Maximizer
+          <i class="fas fa-credit-card card-icon"></i></h1>
+        <nav class="navbar-links">
+          <DropdownMenu />
+        </nav>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container my-4">
+      <h1
+        class="text-center text-dark"
+        style="font-weight: bold; font-family: 'Playfair Display', serif;"
+      >
+        Your Digital Wallet
+      </h1>
+      <div class="row mt-4">
+        {{#each this.model as |card|}}
+          <div class="col-md-4 mb-4">
+            <LinkTo
+              @route="card-details"
+              @model={{card.card_id}}
+              class="text-decoration-none"
+            >
+              <div class="wallet-card shadow-sm">
+                <div
+                  class="generic-card-icon"
+                  style="background-color: {{card.color}};"
+                >
+                  <i class="fas {{category-icon card.category}}"></i>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">{{card.name}}</h5>
+                  <p class="card-text">{{card.benefits}}</p>
+                  <button
+                    class="btn btn-danger"
+                    type="button"
+                    {{on "click" (fn this.confirmDelete card.card_id)}}
+                  >
+                    Delete
+                  </button>
+                </div>
+              </div>
+            </LinkTo>
+          </div>
+        {{/each}}
+      </div>
+      <button
+        class="button"
+        data-bs-toggle="modal"
+        data-bs-target="#addCardModal"
+        type="button"
+      >
+        <span class="button__text">
+          <span>A</span><span>d</span><span>d</span><span> </span><span
+          >N</span><span>e</span><span>w</span><span> </span><span>C</span><span
+          >a</span><span>r</span><span>d</span>
+        </span>
+        <svg class="button__svg" role="presentational" viewBox="0 0 600 600">
+          <defs>
+            <clipPath id="myClip">
+              <rect x="0" y="0" width="100%" height="50%" />
+            </clipPath>
+          </defs>
+          <g clip-path="url(#myClip)">
+            <g id="money">
+              <path
+                d="M441.9,116.54h-162c-4.66,0-8.49,4.34-8.62,9.83l.85,278.17,178.37,2V126.37C450.38,120.89,446.56,116.52,441.9,116.54Z"
+                fill="#699e64"
+                stroke="#323c44"
+                stroke-miterlimit="10"
+                stroke-width="14"
+              />
+              <path
+                d="M424.73,165.49c-10-2.53-17.38-12-17.68-24H316.44c-.09,11.58-7,21.53-16.62,23.94-3.24.92-5.54,4.29-5.62,8.21V376.54H430.1V173.71C430.15,169.83,427.93,166.43,424.73,165.49Z"
+                fill="#699e64"
+                stroke="#323c44"
+                stroke-miterlimit="10"
+                stroke-width="14"
+              />
+            </g>
+            <g id="creditcard">
+              <path
+                d="M372.12,181.59H210.9c-4.64,0-8.45,4.34-8.58,9.83l.85,278.17,177.49,2V191.42C380.55,185.94,376.75,181.57,372.12,181.59Z"
+                fill="#a76fe2"
+                stroke="#323c44"
+                stroke-miterlimit="10"
+                stroke-width="14"
+              />
+              <path
+                d="M347.55,261.85H332.22c-3.73,0-6.76-3.58-6.76-8v-35.2c0-4.42,3-8,6.76-8h15.33c3.73,0,6.76,3.58,6.76,8v35.2C354.31,258.27,351.28,261.85,347.55,261.85Z"
+                fill="#ffdc67"
+              />
+              <path d="M249.73,183.76h28.85v274.8H249.73Z" fill="#323c44" />
+            </g>
+          </g>
+          <g id="wallet">
+            <path
+              d="M478,288.23h-337A28.93,28.93,0,0,0,112,317.14V546.2a29,29,0,0,0,28.94,28.95H478a29,29,0,0,0,28.95-28.94h0v-229A29,29,0,0,0,478,288.23Z"
+              fill="#a4bdc1"
+              stroke="#323c44"
+              stroke-miterlimit="10"
+              stroke-width="14"
+            />
+            <path
+              d="M512.83,382.71H416.71a28.93,28.93,0,0,0-28.95,28.94h0V467.8a29,29,0,0,0,28.95,28.95h96.12a19.31,19.31,0,0,0,19.3-19.3V402a19.3,19.3,0,0,0-19.3-19.3Z"
+              fill="#a4bdc1"
+              stroke="#323c44"
+              stroke-miterlimit="10"
+              stroke-width="14"
+            />
+            <path
+              d="M451.46,435.79v7.88a14.48,14.48,0,1,1-29,0v-7.9a14.48,14.48,0,0,1,29,0Z"
+              fill="#a4bdc1"
+              stroke="#323c44"
+              stroke-miterlimit="10"
+              stroke-width="14"
+            />
+            <path
+              d="M147.87,541.93V320.84c-.05-13.2,8.25-21.51,21.62-24.27a42.71,42.71,0,0,1,7.14-1.32l-29.36-.63a67.77,67.77,0,0,0-9.13.45c-13.37,2.75-20.32,12.57-20.27,25.77l.38,221.24c-1.57,15.44,8.15,27.08,25.34,26.1l33-.19c-15.9,0-28.78-10.58-28.76-25.93Z"
+              fill="#7b8f91"
+            />
+            <path
+              d="M148.16,343.22a6,6,0,0,0-6,6v92a6,6,0,0,0,12,0v-92A6,6,0,0,0,148.16,343.22Z"
+              fill="#323c44"
+            />
+          </g>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Modal for Adding a New Card -->
+    <div
+      class="modal fade"
+      id="addCardModal"
+      tabindex="-1"
+      aria-labelledby="addCardModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="addCardModalLabel">Add New Card</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form id="addCardForm" {{on "submit" this.submitCard}}>
+              <div class="mb-3">
+                <label for="cardName" class="form-label">Card Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="cardName"
+                  name="cardName"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="cardBenefits" class="form-label">Card Benefits</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="cardBenefits"
+                  name="cardBenefits"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="cardCategory" class="form-label">Category</label>
+                <select
+                  id="cardCategory"
+                  class="form-select"
+                  name="cardCategory"
+                  required
+                >
+                  <option value="travel">Travel</option>
+                  <option value="shopping">Shopping</option>
+                  <option value="dining">Dining</option>
+                  <option value="cash-back">Cash Back</option>
+                  <option value="groceries">Groceries</option>
+                  <option value="fuel">Fuel</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="cardColor" class="form-label">Card Color</label>
+                <input
+                  type="color"
+                  class="form-control form-control-color"
+                  id="cardColor"
+                  name="cardColor"
+                  value="#ffffff"
+                  required
+                />
+              </div>
+              <button type="submit" class="btn btn-primary w-100">Add Card</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {{! Footer }}
+    <footer class="footer bg-dark text-white py-3 mt-auto">
+      <h5 class="footer-logo">Rewards Maximizer
+        <i class="fas fa-credit-card card-icon"></i></h5>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+        <a href="#"><i class="fab fa-linkedin"></i></a>
+      </div>
+      <div class="footer-links">
+        <a href="mailto:webmaster@rewardsmaximizer.com">Contact Us</a>
+        |
+        <a href="/about">About Us</a>
+      </div>
+    </footer>
+    {{! Bootstrap for dropdown menu }}
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    ></script>
+    {{! Initialize dropdown menu }}
+    <script>
+      function confirmDelete(cardId) { // Show a confirmation dialog const
+      userConfirmed = confirm("Are you sure you want to delete this card?"); //
+      If the user confirms, call the deleteCard function if (userConfirmed) {
+      deleteCard(cardId); } } function deleteCard(cardId) { // Make a request to
+      delete the card fetch(`http://localhost:8080/delete_card/${cardId}`, {
+      method: "DELETE", }) .then((response) => { if (response.ok) { alert("Card
+      deleted successfully!"); location.reload(); // Reload the page to update
+      the card list } else { alert("Failed to delete the card. Please try
+      again."); } }) .catch((error) => { console.error("Error deleting card:",
+      error); alert("An error occurred while deleting the card."); }); }
+    </script>
+
+  </body>
+</html>

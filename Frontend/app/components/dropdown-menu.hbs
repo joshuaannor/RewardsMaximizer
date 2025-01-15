@@ -1,0 +1,15 @@
+<div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+        Menu
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <li><button class="dropdown-item" type="button" {{on "click" this.home}}>Home</button></li>
+        <li><button class="dropdown-item" type="button" {{on "click" this.wallet}}>Wallet</button></li>
+        <li><button class="dropdown-item" type="button" {{on "click" this.search}}>Search</button></li>
+        <li><button class="dropdown-item" type="button" {{on "click" this.rewards}}>Available Rewards</button></li>
+        <li><button class="dropdown-item" type="button" {{on "click" this.profile}}>Profile</button></li>
+        <li><button class="dropdown-item" type="button" {{on "click" this.crowdsourcing}}>User Feedback</button></li>
+        <li><button class="dropdown-item" type="button" {{on "click" this.signOut}}>Sign Out</button></li>
+    </ul>
+</div>
+{{yield}}
