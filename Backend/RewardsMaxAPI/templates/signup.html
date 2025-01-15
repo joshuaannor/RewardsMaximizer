@@ -1,0 +1,55 @@
+<html>
+  <head>
+    <title>Signup</title>
+    <style>
+      label {
+        display: block;
+        margin-bottom: 5px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <ul>
+      {% for message in messages %}
+      <li>
+        <span><strong>{{ message }}</strong></span>
+      </li>
+      {% endfor %}
+    </ul>
+
+    <form method="post">
+      <fieldset>
+        <legend>User Signup</legend>
+        <p>
+          <label for="username">Username</label>
+          <input name="username" id="username" value="" />
+        </p>
+        <p>
+          <label for="password">Password</label>
+          <input
+            name="password"
+            id="password"
+            type="password"
+            value=""
+          />
+        </p>
+        <p>
+          <label for="confirm password">Confirm Password</label>
+          <input
+            name="confirmpassword"
+            id="confirmpassword"
+            type="password"
+            value=""
+          />
+        </p>
+      </fieldset>
+
+      <input type="submit" value="Sign up" />
+
+      {% if let Some(next) = next %}
+      <input type="hidden" name="next" value="{{next}}" />
+      {% endif %}
+    </form>
+  </body>
+</html>

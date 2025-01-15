@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Digital Wallet - Rewards Maximizer</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* Generic Card Icon Styling */
+    .generic-card-icon {
+      font-size: 3em;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100px;
+      border-radius: 8px;
+    }
+
+    /* Different Colors for Different Cards */
+    .bg-chase { background-color: #0074cc; } /* Chase Blue */
+    .bg-amazon { background-color: #ff9900; } /* Amazon Orange */
+    .bg-sapphire { background-color: #0a4e90; } /* Sapphire Dark Blue */
+    .bg-new-card { background-color: #333; } /* Generic Dark for Add New Card */
+  </style>
+</head>
+<body class="bg-light d-flex flex-column min-vh-100">
+
+  <!-- Header -->
+  <header class="header bg-dark text-white py-3">
+    <div class="container d-flex justify-content-between align-items-center">
+      <h1 class="header-logo">Rewards Maximizer <span class="card-icon"><i class="fas fa-credit-card"></i></span></h1>
+      <button class="btn btn-outline-light">User Feedback</button>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="container my-4">
+    <h2 class="text-center">Your Digital Wallet</h2>
+    <div class="row mt-4">
+      
+      <!-- Chase Freedom Unlimited -->
+      <div class="col-md-4 mb-4">
+        <div class="card shadow-sm text-center">
+          <div class="generic-card-icon bg-chase">
+            <i class="fab fa-cc-visa"></i>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Chase Freedom Unlimited</h5>
+            <p class="card-text"><strong>1.5% cash back</strong> on all purchases, 3% on dining, 5% on travel through Chase.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chase Sapphire Preferred -->
+      <div class="col-md-4 mb-4">
+        <div class="card shadow-sm text-center">
+          <div class="generic-card-icon bg-sapphire">
+            <i class="fas fa-gem"></i>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Chase Sapphire Preferred</h5>
+            <p class="card-text"><strong>5x points</strong> on travel through Chase, 3x on dining, 2x on other travel.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Amazon Prime Rewards Visa -->
+      <div class="col-md-4 mb-4">
+        <div class="card shadow-sm text-center">
+          <div class="generic-card-icon bg-amazon">
+            <i class="fab fa-amazon"></i>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Amazon Prime Rewards Visa</h5>
+            <p class="card-text"><strong>5% cash back</strong> at Amazon and Whole Foods, 2% at restaurants, gas, and transit.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <button class="btn btn-dark mt-3 w-100" data-bs-toggle="modal" data-bs-target="#addCardModal">Add New Card</button>
+  </div>
+
+  <!-- Modal for Adding a New Card -->
+  <div class="modal fade" id="addCardModal" tabindex="-1" aria-labelledby="addCardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addCardModalLabel">Add New Card</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="addCardForm">
+            <div class="mb-3">
+              <label for="cardName" class="form-label">Card Name</label>
+              <input type="text" class="form-control" id="cardName" required>
+            </div>
+            <div class="mb-3">
+              <label for="cardBenefits" class="form-label">Card Benefits</label>
+              <input type="text" class="form-control" id="cardBenefits" required>
+            </div>
+            <div class="mb-3">
+              <label for="iconChoice" class="form-label">Icon Choice</label>
+              <select id="iconChoice" class="form-select">
+                <option value="fa-credit-card">Credit Card</option>
+                <option value="fa-shopping-cart">Shopping</option>
+                <option value="fa-plane">Travel</option>
+                <option value="fa-utensils">Dining</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="cardColor" class="form-label">Card Color</label>
+              <input type="color" class="form-control form-control-color" id="cardColor" value="#000000" required>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Add Card</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer bg-dark text-white py-3 mt-auto">
+    <div class="container text-center">
+      <h5 class="footer-logo" style="font-family: 'Playfair Display', serif;">Rewards Maximizer <span class="card-icon"><i class="fas fa-credit-card"></i></span></h5>
+      <div class="d-flex justify-content-center my-2">
+        <a href="#" class="mx-2 text-white"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="mx-2 text-white"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="mx-2 text-white"><i class="fab fa-youtube"></i></a>
+        <a href="#" class="mx-2 text-white"><i class="fab fa-linkedin"></i></a>
+      </div>
+      <div>
+        <a href="#" class="text-white mx-2">Contact Us</a> | 
+        <a href="#" class="text-white mx-2">About Us</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
