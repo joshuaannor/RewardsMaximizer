@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="{{ site.lang | default: "en-US" }}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+{% seo %}
+    <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+    <script src="{{ '/assets/js/respond.js' | relative_url }}"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="{{ '/assets/css/ie.css' | relative_url }}">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    {% include head-custom.html %}
+  </head>
+  <body>
+      <div id="header">
+        <nav style="background: #353535;">
+          <ul>
+            <li><a href="http://ens-labs.com/f24-Platinum-1/">Home</a></li>
+            <li><a href="http://ens-labs.com/f24-Platinum-1/team-bio.html">Biographies</a></li>
+            <li><a href="http://ens-labs.com/f24-Platinum-1/presentations.html">Presentations</a></li>
+            <li><a href="http://ens-labs.com/f24-Platinum-1/references.html">References</a></li>
+            <li><a href="http://ens-labs.com/f24-Platinum-1/glossary.html">Glossary</a></li>
+            <li><a href="http://ens-labs.com/f24-Platinum-1/labs.html">Labs</a></li>
+            <li><a href="https://github.com/ens-labs/RewardsMaximizer/wiki">User Guide</a></li>
+          </ul>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+      <section>
+        <div id="title">
+          <h1>Team Platinum Biographies</h1>
+        </div>
+
+        {{ content }}
+
+      </section>
+      <hr> <!-- Horizontal line above the footer -->
+      <footer>
+        <div style="text-align: center;">
+          CS411 - Team Platinum - Fall 2024 |
+          <a href="https://www.odu.edu/" target="_blank">Old Dominion University</a> |
+          <a href="https://www.odu.edu/computer-science" target="_blank">ODU CS Department</a>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
